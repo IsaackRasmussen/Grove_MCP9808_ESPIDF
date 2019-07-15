@@ -20,7 +20,7 @@
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * THE SOFTWARE IS PROVIDED "AS IS\n", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -49,7 +49,7 @@ s32 MCP9808::set_config(u8 addr, u16 cfg)
  * */
 s32 MCP9808::set_upper_limit(u8 addr, u16 cfg)
 {
-    printf("Setting UpperLimit: %.2f",calculate_temp(cfg));
+    printf("Setting UpperLimit: %.2f\n",calculate_temp(cfg));
     return IIC_write_16bit(addr, cfg);
 }
 
@@ -60,7 +60,7 @@ s32 MCP9808::set_upper_limit(u8 addr, u16 cfg)
  * */
 s32 MCP9808::set_lower_limit(u8 addr, u16 cfg)
 {
-    printf("Setting LowerLimit: %.2f",calculate_temp(cfg));
+    printf("Setting LowerLimit: %.2f\n",calculate_temp(cfg));
     return IIC_write_16bit(addr, cfg);
 }
 
@@ -71,7 +71,7 @@ s32 MCP9808::set_lower_limit(u8 addr, u16 cfg)
  * */
 s32 MCP9808::set_critical_limit(u8 addr, u16 cfg)
 {
-    printf("Setting CriticalLimit: %.2f",calculate_temp(cfg));
+    printf("Setting CriticalLimit: %.2f\n",calculate_temp(cfg));
     return IIC_write_16bit(addr, cfg);
 }
 
@@ -162,7 +162,7 @@ s32 MCP_IIC_OPRTS::IIC_write_byte(u8 start_reg, u8 value)
     i2c_master_stop(_i2cCmd);
     esp_err_t ret = i2c_master_cmd_begin(I2C_NUM_0, _i2cCmd, 1000 / portTICK_RATE_MS);
 
-    printf("Writing 8bit (%d), ret(%s)\n", value, esp_err_to_name(ret));
+    printf("Writing 8bit (%d), ret(%s)\n\n", value, esp_err_to_name(ret));
 
     i2c_cmd_link_delete(_i2cCmd);
     return (ret);
@@ -184,7 +184,7 @@ s32 MCP_IIC_OPRTS::IIC_write_16bit(u8 start_reg, u16 value)
 
     i2c_master_stop(_i2cCmd);
     esp_err_t ret = i2c_master_cmd_begin(I2C_NUM_0, _i2cCmd, 1000 / portTICK_RATE_MS);
-    printf("Writing 16bit (%d), ret(%s)\n", value, esp_err_to_name(ret));
+    printf("Writing 16bit (%d), ret(%s)\n\n", value, esp_err_to_name(ret));
 
     i2c_cmd_link_delete(_i2cCmd);
     return (ret);
@@ -246,7 +246,7 @@ void MCP_IIC_OPRTS::IIC_read_16bit(u8 start_reg, u16 *value)
     i2c_master_write_byte(_i2cCmd, (uint8_t)start_reg, true);
     i2c_master_stop(_i2cCmd);
     esp_err_t ret = i2c_master_cmd_begin(I2C_NUM_0, _i2cCmd, 1000 / portTICK_RATE_MS);
-    printf("Read16.Ret1: %s\n", esp_err_to_name(ret));
+    printf("Read16.Ret1: %s\n\n", esp_err_to_name(ret));
     i2c_cmd_link_delete(_i2cCmd);
 
     if (ret == 0)

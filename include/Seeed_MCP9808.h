@@ -119,10 +119,6 @@ public:
         if (installI2CDriver())
         {
             printf("Installed I2C driver\n");
-
-            //_i2cCmd = i2c_cmd_link_create();
-
-            //printf("I2C link created\n");
         }
     }
     s32 IIC_write_byte(u8 reg, u8 byte);
